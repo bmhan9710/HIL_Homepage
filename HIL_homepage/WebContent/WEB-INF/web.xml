@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xmlns="http://java.sun.com/xml/ns/javaee" 
+			xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
+			id="WebApp_ID" version="3.0">
+
+	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/root-context.xml</param-value>
+	</context-param>
+ 
+	<listener>	<!-- 이 Listener가 없으면 프로그램이 시작될 때 appServlet.xml로 안가고 web.xml만 찾는다. -->
+	 <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+  <!-- Dispatcher Servlet 설정 -->
+  <servlet> <!-- 별도로 설정안하고 그냥 저렇게 두면 디폴트로 서블릿이름-servlet.xml파일을 찾는다. -->
+     <servlet-name>appServlet</servlet-name>
+     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+     <init-param>
+     	<param-name>contextConfigLocation</param-name>
+     	<param-value>/WEB-INF/appServlet-servlet.xml</param-value>		<!--  AppServlet 위치설정 -->
+	 </init-param>
+  	 <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>appServlet</servlet-name>
+  	<url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+</web-app>

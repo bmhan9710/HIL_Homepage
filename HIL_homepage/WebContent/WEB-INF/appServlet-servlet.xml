@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!--  DispatcherServlet Context : defines this servlet's request-processing infrastructure -->
+
+	<!--  Enables the Spring MVC @Controller programming model -->
+	<mvc:annotation-driven />
+
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to.jsp resources in the /WEB-INF/ directory -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />	<!-- /WEB-INF/views/는 기본적으로 return 앞부분에 들어감 -->
+		<property name="suffix" value=".jsp" />					<!-- /WEB-INF/는 기본적으로 return 뒷분에 들어감 -->
+	</bean>
+
+	<context:component-scan base-package="my.mvc" />		<!-- 기본 패키지가 있는 곳을 설정해준다 -->
+
+</beans>
